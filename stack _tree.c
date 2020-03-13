@@ -66,7 +66,7 @@ TREE *create_bt(TREE *root){
 		else{
 			printf("Current node value: %d\n",root->data);
 			printf("right child?\n");
-			fflush(stdin);;.lp[;]
+			fflush(stdin);
 			scanf("%c", &choice);
 			if(choice=='y'){
 				if(stk[top]!=root||top==0){
@@ -87,13 +87,43 @@ TREE *create_bt(TREE *root){
 	return(stk[0]);
 }
 
-void inorder(TREE *root){
+/*void inorder(TREE *root){
 	if(root!=NULL){
 		inorder(root->left);
 		printf(" %d ",root->data);
 		inorder(root->right);
 	}
-}
+}*/
+void inorder(TREE *root) 
+{ 
+  TREE *current = root; 
+  TREE *s[MAX];
+  int top1=0;
+  int done = 0; 
+  
+  while (!done) 
+  { 
+    if(current !=  NULL) 
+    { 
+      push(s, &top1, current);                                                
+      current = current->left;   
+    } 
+         
+    else                                                              
+    { 
+      if (top1!=0) 
+      { 
+        current = s[top1];
+        top1--;
+        printf("%d ", current->data); 
+  
+        current = current->right; 
+      } 
+      else
+        done = 1;  
+    } 
+  } 
+}   
 
 int main(){
 	TREE *root=NULL;
